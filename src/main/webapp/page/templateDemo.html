@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <!--<link href="../css/examples-offline.css" rel="stylesheet" />-->
+    <link href="../css/kendo.common.min.css" rel="stylesheet" />
+    <!--<link href="../css/kendo.rtl.min.css" rel="stylesheet"/>-->
+    <link href="../css/kendo.default.min.css" rel="stylesheet" />
+    <link href="../css/kendo.dataviz.min.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <!--<script src="../js/jszip.min.js"></script>-->
+    <script src="../js/kendo.all.min.js"></script>
+    <script src="../js/kendo.dataviz.min.js"></script>
+    <script src="../js/kendo.web.min.js"></script>
+    <script src="../js/common.js"></script>
+    <!--<script src="../js/console.js"></script>-->
+</head>
+<a class="offline-button" href="../index.html">Back</a>
+<body>
+<div id="templateDemo"></div>
+<div id="templateDemo2"></div>
+<ul id="users"></ul>
+<script type="text/x-kendo-template" id="myTemplate">
+    #if(isAdmin){#
+    <li>#: name # is Admin</li>
+    #}else{#
+    <li>#: name # is User</li>
+    #}#
+</script>
+<script>
+    var myTemplate=kendo.template($("#myTemplate").html());
+    var data=[
+        {name:"John",isAdmin:false},
+        {name:"Alex",isAdmin:true}
+    ];
+    var result = kendo.render(myTemplate, data);
+    $("#users").html(result);
+</script>
+<script>
+//    var template=kendo.template("<div id='box'>#= firstName #</div>");
+    var template=kendo.template("<div id='box'>#: firstName #</div>");
+//    var data={firstName:"Todd"};
+    var data = { firstName: "<b>Todd</b>" };
+    var result=template(data);
+    $("#templateDemo").html(result);
+</script>
+<script id="javascriptTemplate" type="text/x-kendo-template">
+    <ol>
+        # for (var i = 0; i < data.length; i++)
+        {
+        #<li>#= data[i] #</li>#
+        }
+        #
+    </ol>
+</script>
+<script>
+    var template2=kendo.template($("#javascriptTemplate").html());
+    var data = ["Todd", "Steve", "Burke"];
+    var result2=template2(data);
+    $("#templateDemo2").html(result2);
+</script>
+</body>
+</html>

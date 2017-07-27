@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Kendo UI Web Demo</title>
+    <!--<link href="css/examples-offline.css" rel="stylesheet" />-->
+    <link href="css/kendo.default.min.css" rel="stylesheet" />
+    <!--<link href="/css/kendo.default.mobile.min.css" rel="stylesheet" />-->
+    <link href="css/kendo.common.min.css" rel="stylesheet" />
+    <link href="css/kendo.dataviz.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/kendo.all.min.js"></script>
+    <script src="js/kendo.dataviz.min.js"></script>
+    <script src="js/kendo.web.min.js"></script>
+</head>
+<body>
+Kendo Demo
+<br>
+<a class="offline-button" href="page/gridDemo.html">Grid Demo Page</a>
+<br>
+<br>
+<a class="offline-button" href="page/mobile.html">Mobile page</a>
+<br>
+<br>
+<a class="offline-button" href="page/grid.html">Grid page</a>
+<br>
+<a class="offline-button" href="page/autoComplete.html">AutoComplete page</a>
+<br>
+<br>
+<a class="offline-button" href="page/templateDemo.html">TemplateDemo page</a>
+<br>
+<a class="offline-button" href="page/animateDemo.html">Animate page</a>
+<br>
+<div>
+    <input id="datepicker" title="datepicker"/>
+</div>
+<!--<div id="gauge">-->
+<!--</div>-->
+<div id="container2">
+    <input data-role="numerictextbox">
+</div>
+<script type="text/javascript">
+    kendo.init("#container2");
+    $(function () {
+        $("#datepicker").kendoDatePicker();
+    });
+</script>
+</body>
+</html>
