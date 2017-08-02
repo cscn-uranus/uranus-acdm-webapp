@@ -61,15 +61,35 @@ module.exports = {
           }, {
               loader: "sass-loader" // 将SASS编译成CSS
           }]
+      },
+      {
+          test: /\.css$/,
+          include: [
+              path.resolve(__dirname, "not_exist_path")
+          ],
+          loader: "style!css"
       }
-    ]
+    ],
+      loaders: [
+
+          { test: /\.css$/, loader: 'style-loader!css-loader' },
+          { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+          { test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
+          { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+          { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" }
+      ]
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({ 
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery"
+    }),
+    new HtmlWebpackPlugin({
       template: './src/index.html',
       inject: 'body'
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
+
 };
