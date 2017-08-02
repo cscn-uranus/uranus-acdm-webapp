@@ -6,70 +6,92 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
+  resolve: {
+    modules: [
+      path.join(__dirname, 'src'),
+      path.join(__dirname, 'lib/kendo/js/'),
+      'node_modules',
+    ],
+  },
   entry: './src/app/app.js',
   output: {
     filename: 'webpack.bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
   },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
     hot: true,
-    port: 4000
+    // historyApiFallback: true,
+    port: 4000,
   },
   module: {
     rules: [
       {
         test: /\.txt$/,
-        use: 'raw-loader'
+        use: 'raw-loader',
       },
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env']
-          }
-        }
+        exclude: /(node_modules)/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['env'],
+            },
+          },
+          {
+            loader: 'eslint-loader',
+          },
+        ],
       },
       {
         test: /\.html$/,
-        use: [ {
-          loader: 'html-loader',
-          options: {
-            minimize: true
-          }
-        }],
+        use: [
+          {
+            loader: 'html-loader',
+            options: {
+              minimize: true,
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
-          'file-loader'
-        ]
+          'file-loader',
+        ],
       },
       {
-          test: /\.scss$/,
-          use: [{
-              loader: "style-loader" // 在HTML中创建style节点，内嵌CSS
-          }, {
-              loader: "css-loader" // 便CSS也具有像JS一样的模块化功能
-          }, {
-              loader: "sass-loader" // 将SASS编译成CSS
-          }]
-      }
-    ]
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'style-loader' // 在HTML中创建style节点，内嵌CSS
+          },
+          {
+            loader: 'css-loader' // 便CSS也具有像JS一样的模块化功能
+          },
+          {
+            loader: 'sass-loader' // 将SASS编译成CSS
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({ 
+    new HtmlWebpackPlugin({
       template: './src/index.html',
-      inject: 'body'
+      inject: 'body',
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
 };
