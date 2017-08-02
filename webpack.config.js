@@ -51,12 +51,22 @@ module.exports = {
         use: [
           'file-loader'
         ]
+      },
+      {
+          test: /\.scss$/,
+          use: [{
+              loader: "style-loader" // 在HTML中创建style节点，内嵌CSS
+          }, {
+              loader: "css-loader" // 便CSS也具有像JS一样的模块化功能
+          }, {
+              loader: "sass-loader" // 将SASS编译成CSS
+          }]
       }
     ]
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({
+    new HtmlWebpackPlugin({ 
       template: './src/index.html',
       inject: 'body'
     }),
