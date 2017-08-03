@@ -1,50 +1,42 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack');
 
 module.exports = {
   resolve: {
     modules: [
-      path.join(__dirname, 'src'),
-      path.join(__dirname, 'lib/kendo/js/'),
+      path.resolve(__dirname, 'src/'),
+      path.resolve(__dirname, 'lib/kendo/js/'),
       'node_modules',
     ],
+    alias: {
+      kendo: path.resolve(__dirname, 'lib/kendo/js/'),
+    },
   },
-  entry: './src/app/app.js',
+  entry: './src/app/acdm-app.module.js',
   output: {
     filename: 'webpack.bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
+  devtool: false,
   devServer: {
     contentBase: './dist',
     hot: true,
-    // historyApiFallback: true,
+    historyApiFallback: true,
     port: 4000,
   },
   module: {
+    noParse: [
+      /[\/\\]node_modules[\/\\]angular[\/\\]angular\.js$/,
+    ],
     rules: [
       {
         test: /\.txt$/,
         use: 'raw-loader',
-      },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['env'],
-            },
-          },
-          {
-            loader: 'eslint-loader',
-          },
-        ],
       },
       {
         test: /\.html$/,
@@ -70,27 +62,28 @@ module.exports = {
           'file-loader',
         ],
       },
+
       {
         test: /\.scss$/,
         use: [
-          {
-            loader: 'style-loader' // 在HTML中创建style节点，内嵌CSS
-          },
-          {
-            loader: 'css-loader' // 便CSS也具有像JS一样的模块化功能
-          },
-          {
-            loader: 'sass-loader' // 将SASS编译成CSS
-          },
+          'style-loader',
+          'css-loader',
+          'sass-loader',
         ],
       },
     ],
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+    }),
     new CleanWebpackPlugin(['dist']),
+
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      inject: 'body',
+      inject: 'head',
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
