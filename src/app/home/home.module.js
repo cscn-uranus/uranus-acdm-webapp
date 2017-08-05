@@ -1,6 +1,12 @@
+require('angular');
 
-var angular = require('angular');
+require('@progress/kendo-ui/js/kendo.angular');
+require('@progress/kendo-ui/js/kendo.datepicker');
 
-var homeModule = angular.module('home', []);
-module.exports = homeModule;
+var homeComponent = require('./home.component');
+
+angular.module('acdmHome', ['kendo.directives']).
+  component('acdmHome', homeComponent);
+
+module.exports = 'acdmHome';
 

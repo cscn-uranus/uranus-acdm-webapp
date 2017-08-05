@@ -1,11 +1,11 @@
-var homeModule = require('./home.module');
+require('angular');
 
-var homeComponent = homeModule.
-  component('home', {
-    templateUrl: './home.component.html',
-    controller: function homeController() {
-      this.user = 'hello';
-    },
-  });
+var homeController = function() {
+  this.birthday = null;
+};
+var homeComponent = {
+  template: require('./home.component.html'),
+  controller: homeController,
+};
 
 module.exports = homeComponent;

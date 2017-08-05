@@ -1,9 +1,10 @@
-'use strict';
-var angular = require('angular');
-var homeComponent = require('./home/home.component');
-require('kendo.angular');
-require('kendo.core');
+require('angular');
 
-var acdmApp = angular.module('acdmApp', ['kendo.directives', homeComponent]);
+var homeModule = require('./home/home.module');
 
-module.exports = acdmApp;
+var acdmAppComponent = require('./acdm-app.component');
+
+angular.module('acdmApp', [homeModule]).
+  component('acdmApp', acdmAppComponent);
+
+module.exports = 'acdmApp';

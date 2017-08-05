@@ -9,20 +9,15 @@ module.exports = {
   resolve: {
     modules: [
       path.resolve(__dirname, 'src/'),
-      path.resolve(__dirname, 'lib/kendo/js/'),
       'node_modules',
     ],
-    alias: {
-      kendo: path.resolve(__dirname, 'lib/kendo/js/'),
-    },
   },
-  entry: './src/app/acdm-app.module.js',
+  entry: './src/index.js',
   output: {
     filename: 'webpack.bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  // devtool: 'inline-source-map',
-  devtool: false,
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
     hot: true,
@@ -30,9 +25,6 @@ module.exports = {
     port: 4000,
   },
   module: {
-    noParse: [
-      /[\/\\]node_modules[\/\\]angular[\/\\]angular\.js$/,
-    ],
     rules: [
       {
         test: /\.txt$/,
@@ -83,7 +75,7 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      inject: 'head',
+      inject: 'body',
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],

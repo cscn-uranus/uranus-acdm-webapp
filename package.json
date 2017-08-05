@@ -11,6 +11,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@progress/kendo-ui": "^2017.2.621",
     "angular": "^1.6.5",
     "jquery": "^3.2.1"
   },
