@@ -1,5 +1,5 @@
 var acdmAppModule = require('./app/acdm-app.module');
 
-module.exports.acdmAppModule = acdmAppModule;
+module.exports = acdmAppModule;
 
 
