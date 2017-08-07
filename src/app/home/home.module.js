@@ -3,10 +3,12 @@ require('angular');
 require('@progress/kendo-ui/js/kendo.angular');
 require('@progress/kendo-ui/js/kendo.datepicker');
 
-var homeComponent = require('./home.component');
+var homeNavComponent = require('./home-nav.component');
+var homeGridComponent = require('./home-grid.component');
 
-angular.module('acdmHome', ['kendo.directives']).
-  component('acdmHome', homeComponent);
+angular.module('homeModule', ['kendo.directives']).
+  component('homeNav', homeNavComponent).
+  component('homeGrid', homeGridComponent);
 
-module.exports = 'acdmHome';
+module.exports = 'homeModule';
 
