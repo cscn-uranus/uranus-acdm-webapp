@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-module.exports = {
+var config = {
   resolve: {
     modules: [
       path.resolve(__dirname, 'src/'),
@@ -81,3 +81,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
   ],
 };
+
+
+module.exports = config;

@@ -1,6 +1,7 @@
 require('angular');
 
-var acdmAppController = function() {
+var acdmAppController = function AcdmAppController($scope) {
+  $scope.title = 'acdm-app';
 };
 var acdmAppComponent = {
   template: require('./acdm-app.component.html'),
