@@ -27,6 +27,12 @@ var config = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: 'istanbul-instrumenter-loader',
+        include: path.resolve('./src'),
+      },
+      {
         test: /\.html$/,
         use: [
           {
