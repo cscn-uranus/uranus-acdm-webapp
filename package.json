@@ -34,10 +34,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-webpack": "^2.0.4",
     "node-sass": "^4.5.3",
-<<<<<<< HEAD
     "raw-loader": "^0.5.1",
-=======
->>>>>>> remotes/origin/dev
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "webpack": "^3.4.1",
