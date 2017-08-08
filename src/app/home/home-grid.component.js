@@ -1,5 +1,3 @@
-require('angular');
-
 var homeGridController = function($scope) {
   $scope.name = 'grid';
 };

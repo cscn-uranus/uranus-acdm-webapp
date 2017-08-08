@@ -1,5 +1,5 @@
 require('angular-mocks');
-require('./acdm-app.module');
+require('./app.module');
 describe('acdmApp', function() {
   // Load the module that contains the `phoneList` component before each test
   beforeEach(angular.mock.module('acdmModule'));
