@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 col-md-offset-5">
+      <h2 class="text-center">绵阳A-CDM系统</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-3">
+      <form class="form-horizontal" role="form" kendo-validator="validator" ng-submit="validate($event)" >
+      <!--<form class="form-horizontal" role="form" kendo-validator="validator" ng-submit="controller.login()" >-->
+        <div class="form-group">
+          <label class="col-md-2 control-label" for="username" class="required">
+            用户名:
+          </label>
+          <div class="col-md-6">
+            <input type="text" class="form-control" name="username" id="username"
+                   placeholder="由字母(开头为字母)、数字、下划线组成,长度小于20"
+                   required data-required-msg="请输入用户名"
+                   pattern="[a-zA-Z][a-zA-Z0-9_]{1,20}" validationMessage="请输入合法用户名"
+                   ng-model="controller.credentials.username">
+            <span class="k-required-msg" data-for="username"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label" for="password">
+            密码:
+          </label>
+          <div class="col-md-6">
+            <input type="password" class="form-control" name="password" id="password"
+                   placeholder="由字母(开头为字母)、数字、下划线组成,长度小于20"
+                   required data-required-msg="请输入密码"
+                   pattern="[a-zA-Z][a-zA-Z0-9_]{1,20}" validationMessage="请输入合法密码"
+                   ng-model="controller.credentials.password">
+            <span class="k-required-msg" data-for="password"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-6">
+            <!--<a ui-sref="main" class="btn btn-success btn-lg" type="submit" style="width: 100%">登录</a>-->
+            <button ui-sref="main" class="btn btn-success btn-lg" type="submit" style="width: 100%">登录</button>
+          </div>
+        </div>
+      </form>
+      <div class="alert alert-danger" ng-show="controller.error">
+        There was a problem logging in. Please try again.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
