@@ -14,10 +14,6 @@
 // };
 // $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-
-
-
-
 var loginController = function($rootScope, $http, $location) {
   var self = this;
 
@@ -44,10 +40,10 @@ var loginController = function($rootScope, $http, $location) {
   self.login = function() {
     authenticate(self.credentials, function() {
       if ($rootScope.authenticated) {
-        $location.path('/');
+        $location.path('/main');
         self.error = false;
       } else {
-        $location.path('/login');
+        $location.path('/index');
         self.error = true;
       }
     });

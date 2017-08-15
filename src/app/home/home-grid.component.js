@@ -6,4 +6,7 @@ var homeGridComponent = {
   controller: homeGridController,
 };
 
+
+
+
 module.exports = homeGridComponent;

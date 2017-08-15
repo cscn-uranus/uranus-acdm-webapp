@@ -6,7 +6,8 @@ appRoutingModule.run(function($rootScope, $state, $stateParams) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
 });
-appRoutingModule.config(function($stateProvider, $urlRouterProvider) {
+appRoutingModule.config(function(
+  $stateProvider, $urlRouterProvider, $httpProvider) {
   $urlRouterProvider.otherwise('/index');
   $stateProvider.state('index', {
     url: '/index',
@@ -23,6 +24,7 @@ appRoutingModule.config(function($stateProvider, $urlRouterProvider) {
       },
     },
   });
+  $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 });
 
 // appModule.config(function($stateProvider) {
