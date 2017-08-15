@@ -1,20 +1,14 @@
-// Karma configuration
-// Generated on Mon Aug 07 2017 19:09:21 GMT+0800 (中国标准时间)
-var webpackConfig = require('./webpack.config');
+const path = require('path');
+const webpackConfig = require('./webpack.config');
 
 module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'kjhtml', 'coverage-istanbul'],
-
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-coverage'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('karma-webpack'),
@@ -24,20 +18,16 @@ module.exports = function(config) {
         pattern: './src/test.js', watched: false,
       },
     ],
-    // client: {
-    //   // leave Jasmine Spec Runner output visible in browser
-    //   clearContext: false,
-    // },
-    coverageIstanbulReporter: {
-      reports: ['html', 'lcovonly'],
-      fixWebpackSourcePaths: true,
+    client: {
+      // leave Jasmine Spec Runner output visible in browser
+      clearContext: false,
     },
+
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       './src/test.js': ['webpack'],
     },
-
 
     // web server port
     port: 9876,
@@ -64,6 +54,19 @@ module.exports = function(config) {
 
     webpackMiddleware: {
       stats: 'errors-only',
+    },
+    // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ['progress', 'kjhtml', 'coverage-istanbul'],
+
+    coverageIstanbulReporter: {
+      reports: ['html', 'lcovonly', 'text-summary'],
+      dir: path.join(__dirname, 'coverage'),
+
+      // if using webpack and pre-loaders, work around webpack breaking the source path
+      fixWebpackSourcePaths: true,
+
     },
   });
 };
