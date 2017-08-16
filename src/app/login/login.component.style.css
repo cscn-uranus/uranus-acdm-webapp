@@ -6,10 +6,11 @@
  * Author URI: http://azmind.com
  *
  */
-canvas{position: fixed; top: 0px; left: 0px; }
+/*canvas{position: fixed; top: 0px; left: 0px; }*/
 
 body {
     background:url(../../../assets/login_1.jpg);
+    /*background: #f8f8f8;*/
     background-size:cover;
     text-align: center;
     color: #fefefe;

@@ -13,7 +13,6 @@
 //   // };
 // };
 // $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 var loginController = function($rootScope, $http, $location) {
   var self = this;
 
