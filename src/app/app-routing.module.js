@@ -13,7 +13,7 @@ appRoutingModule.config(function(
     url: '/index',
     views: {
       '': {
-        template: require('./app.component.html'),
+        template: require('./app.login.html'),
       },
     },
   }).state('main', {
@@ -27,6 +27,7 @@ appRoutingModule.config(function(
   $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 });
 
+module.exports = 'appRoutingModule';
 // appModule.config(function($stateProvider) {
 //   var helloState = {
 //     name: 'hello',
@@ -44,4 +45,4 @@ appRoutingModule.config(function(
 //   $stateProvider.state(aboutState);
 // });
 
-module.exports = 'appRoutingModule';
+

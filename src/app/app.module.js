@@ -1,5 +1,6 @@
 require('angular');
-
+require('angular-cookies');
+require('angular-resource');
 var appRoutingModule = require('./app-routing.module');
 
 var homeModule = require('./home/home.module');

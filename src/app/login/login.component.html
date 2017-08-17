@@ -37,7 +37,7 @@
 <!--</div>-->
 <!--<script src="./arrows.js"></script>-->
 <div class="page-container" id="login_main">
-  <h1>绵阳CDM系统</h1>
+  <h1 style="text-align: center;color: #fefefe">绵阳CDM系统</h1>
   <form name="loginForm" id="_form" action=""ng-submit="login()" >
     <label for="username" class="sr-only">用户名</label>
     <input type="text" name="username" id="username"
@@ -47,15 +47,17 @@
            class="password" placeholder="密码" ng-model="credentials.password">
     <br>
     <div style="text-align: left; margin-left: 10px;margin-top: 15px">
-      <label><input type="checkbox" checked="checked"  id="rememberMe"style="width: 10px; height: 10px;">&nbsp;&nbsp;记住我</label>
+      <label><input type="checkbox" checked="checked"  id="rememberMe"
+                    style="width: 10px; height: 10px;" ng-model="rememberMe">
+        &nbsp;&nbsp;<span style="color: #fefefe">记住我</span></label>
     </div>
-    <button type="submit" ui-sref="main" id="login" style="width: 100%">登录</button>
+    <button type="submit" class="btn-block" ui-sref="main" id="login">登录</button>
     <!--<button type="button" id="register" class="register">Register</button>-->
     <div class="error"><span>+</span></div>
   </form>
 </div>
-<div class="alert alert-danger" ng-show="error">
-  登录失败，请重试！
-</div>
+<!--<div class="alert alert-danger" ng-show="error">-->
+  <!--登录失败，请重试！-->
+<!--</div>-->
 
 

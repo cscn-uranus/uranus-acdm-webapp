@@ -8,16 +8,23 @@
  */
 /*canvas{position: fixed; top: 0px; left: 0px; }*/
 
-body {
-    background:url(../../../assets/login_1.jpg);
-    /*background: #f8f8f8;*/
-    background-size:cover;
-    text-align: center;
-    color: #fefefe;
+//body {
+//    /*background:url(../../../assets/login_1.jpg);*/
+//    /*background: #f8f8f8;*/
+//    /*background-size:cover;*/
+//    text-align: center;
+//    color: #fefefe;
+//}
+
+#login_main{
+  background: url("../../../assets/login_1.jpg");
+  background-size:cover ;
+  height: 100%;
+  margin: 200px auto 0 auto;
 }
-.page-container {
-    margin: 250px auto 0 auto;
-}
+//.page-container {
+//
+//}
 
 h1 {
     font-size: 30px;

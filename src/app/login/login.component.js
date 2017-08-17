@@ -1,18 +1,6 @@
 /**
  * Created by Zeus on 2017/8/8.
  */
-// var loginController = function($scope) {
-//   // $scope.menuOrientation = 'horizontal';
-//   // $scope.validate=function(event) {
-//   //   event.preventDefault();
-//   //   if($scope.validator.validate()){
-//   //
-//   //   }else{
-//   //
-//   //   }
-//   // };
-// };
-// $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var loginController = function($rootScope, $http, $location) {
   var self = this;
 
@@ -48,7 +36,10 @@ var loginController = function($rootScope, $http, $location) {
     });
   };
 };
-
+// function loginController($scope, $rootScope, $location,
+// $cookieStore, UserService) {
+//   $scope.rememberMe=false;
+// }
 var loginComponent = {
   template: require('./login.component.html'),
   controller: loginController,
