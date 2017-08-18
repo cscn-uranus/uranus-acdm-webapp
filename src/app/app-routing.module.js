@@ -26,7 +26,6 @@ appRoutingModule.config(function(
   });
   $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 });
-
 module.exports = 'appRoutingModule';
 // appModule.config(function($stateProvider) {
 //   var helloState = {
