@@ -91,7 +91,7 @@ angular.module('loginModule',
     var originalPath= $loacation.path();
     $loacation.path('/login');
     var accessToken=$cookieStore.get('accessToken');
-    if(accessToken!= undefined) {
+    if (accessToken!= undefined) {
       $rootScope.accessToken=accessToken;
       UserService.get(function(user) {
         $rootScope.user=user;
@@ -100,8 +100,8 @@ angular.module('loginModule',
     }
 
     $rootScope.initialized = true;
-  });
-var services = angular.module('exampleApp.services', ['ngResource']);
+  }).component('login', loginComponent);
+var services = angular.module('loginModule.services', ['ngResource']);
 
 services.factory('UserService', function($resource) {
 
@@ -116,6 +116,5 @@ services.factory('UserService', function($resource) {
   );
 });
 
-component('login', loginComponent);
 
 module.exports = 'loginModule';

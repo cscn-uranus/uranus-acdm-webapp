@@ -64,7 +64,6 @@ var loginController = function LoginController(
 };
 
 
-
 var loginComponent = {
   template: require('./login.component.html'),
   controller: loginController,
