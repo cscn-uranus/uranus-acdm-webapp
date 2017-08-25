@@ -1,72 +1,68 @@
 /**
  * Created by Zeus on 2017/8/8.
  */
-// var loginController = function($rootScope, $http, $location) {
-//   var self = this;
-//
-//   var authenticate = function(credentials, callback) {
-//     var headers = credentials ? {authorization: 'Basic '
-//     + btoa(credentials.username + ':' + credentials.password),
-//     } : {};
-//
-//     $http.get('user', {headers: headers}).then(function(response) {
-//       if (response.data.name) {
-//         $rootScope.authenticated = true;
-//       } else {
-//         $rootScope.authenticated = false;
-//       }
-//       callback && callback();
-//     }, function() {
-//       $rootScope.authenticated = false;
-//       callback && callback();
-//     });
-//   };
-//
-//   authenticate();
-//   self.credentials = {};
-//   self.login = function() {
-//     authenticate(self.credentials, function() {
-//       if ($rootScope.authenticated) {
-//         $location.path('/main');
-//         self.error = false;
-//       } else {
-//         $location.path('/index');
-//         self.error = true;
-//       }
-//     });
-//   };
-// };
-// function loginController($scope, $rootScope, $location,
-// $cookieStore, UserService) {
-//   $scope.rememberMe=false;
-// }
-var loginController = function LoginController(
-  $scope, $rootScope, $location, $cookieStore, UserService) {
-
-  $scope.rememberMe = false;
-
-  $scope.login = function() {
-    UserService.authenticate($.param({
-      username: $scope.username,
-      password: $scope.password,
-    }), function(authenticationResult) {
-      var accessToken = authenticationResult.token;
-      $rootScope.accessToken = accessToken;
-      if ($scope.rememberMe) {
-        $cookieStore.put('accessToken', accessToken);
-      }
-      UserService.get(function(user) {
-        $rootScope.user = user;
-        $location.path('/');
+// require('../app-routing.module');
+var loginController = function($rootScope, $http, $location, $window) {
+  var self = this;
+  var REST_LOGIN_URI = 'http://localhost:8099/login';
+  var authenticate = function(credentials, callback) {
+    var headers = credentials ? {
+      authorization: 'Basic '
+      + btoa(credentials.username + ':'
+        + credentials.password),
+    } : {};
+    $http.get(REST_LOGIN_URI, {
+      headers: headers,
+    }).then(function(response) {
+      // 从后台返回的数据
+      // console.log(response.data);
+      // 在sessionStorage中存储用户信息
+      $window.sessionStorage.USER = angular.toJson({
+        'username': response.data.username,
+        'role': response.data.roles,
       });
+      console.log('sessionUser:' + $window.sessionStorage.USER);
+      if (response.data.username) {
+        $rootScope.authenticated = true;
+      } else {
+        $rootScope.authenticated = false;
+      }
+      callback && callback($rootScope.authenticated);
+    }, function() {
+      $rootScope.authenticated = false;
+      callback && callback(false);
+    });
+  };
+  authenticate();
+  self.credentials = {};
+  self.login = function() {
+    authenticate();
+    authenticate(self.credentials, function(authenticated) {
+      if (authenticated) {
+        console.log('Login succeeded');
+        $location.path('/main');
+        self.error = false;
+        $rootScope.authenticated = true;
+      } else {
+        console.log('Login failed');
+        $location.path('/index');
+        self.error = true;
+        $rootScope.authenticated = false;
+      }
+    });
+  };
+  self.logout = function() {
+    $http.post('logout', {}).finally(function() {
+      $rootScope.authenticated = false;
+      $location.path('/index');
     });
   };
 };
 
-
 var loginComponent = {
   template: require('./login.component.html'),
   controller: loginController,
+  controllerAs: 'controller',
 };
 
 module.exports = loginComponent;

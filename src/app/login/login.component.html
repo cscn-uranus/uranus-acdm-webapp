@@ -38,21 +38,21 @@
 <!--<script src="./arrows.js"></script>-->
 <div class="page-container" id="login_main">
   <h1 style="text-align: center;color: #fefefe">绵阳CDM系统</h1>
-  <form name="loginForm" id="_form" action=""ng-submit="login()" >
+  <form name="loginForm" id="_form" action="" ng-submit="controller.login()"  >
     <label for="username" class="sr-only">用户名</label>
     <input type="text" name="username" id="username"
-           class="username" placeholder="账号" ng-model="credentials.username">
+           class="username" placeholder="账号" ng-model="controller.credentials.username">
     <label for="password" class="sr-only">密码</label>
     <input type="password" name="password" id="password"
-           class="password" placeholder="密码" ng-model="credentials.password">
+           class="password" placeholder="密码" ng-model="controller.credentials.password">
     <br>
     <div style="text-align: left; margin-left: 10px;margin-top: 15px">
       <label><input type="checkbox" checked="checked"  id="rememberMe"
                     style="width: 10px; height: 10px;" ng-model="rememberMe">
         &nbsp;&nbsp;<span style="color: #fefefe">记住我</span></label>
     </div>
-    <button type="submit" class="btn-block" ui-sref="main" id="login">登录</button>
-    <!--<button type="button" id="register" class="register">Register</button>-->
+    <!--<button type="submit" class="btn-block" ui-sref="main" ng-click="login()" id="login">登录</button>-->
+    <button type="submit" class="btn-block"  id="login">登录</button>
     <div class="error"><span>+</span></div>
   </form>
 </div>
