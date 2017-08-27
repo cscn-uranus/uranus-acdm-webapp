@@ -1,46 +1,8 @@
-<!--<div class="page-container" style="margin: 250px auto 0 auto;">-->
-  <!--<div class="row">-->
-      <!--<h2 align="center">绵阳CDM系统</h2>-->
-  <!--</div>-->
-  <!--<div class="row" >-->
-    <!--<div class="col-md-4" style="float: none;display: block;margin-left: auto;margin-right: auto" >-->
-      <!--<form class="form-horizontal" role="form" kendo-validator="validator" ng-submit="validate($event)" >-->
-      <!--&lt;!&ndash;<form class="form-horizontal" role="form" kendo-validator="validator" ng-submit="controller.login()" >&ndash;&gt;-->
-        <!--<div class="form-group">-->
-            <!--<label for="username" class="sr-only">用户名</label>-->
-            <!--<input type="text" class="form-control" name="username" id="username"-->
-                   <!--placeholder=" 用户名:由字母开头、数字、下划线组成,长度小于20"-->
-                   <!--required data-required-msg="请输入用户名"-->
-                   <!--pattern="[a-zA-Z][a-zA-Z0-9_]{1,20}" validationMessage="请输入合法用户名"-->
-                   <!--ng-model="controller.credentials.username">-->
-            <!--<span class="k-required-msg" data-for="username"></span>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="password" class="sr-only">密码</label>-->
-            <!--<input type="password" class="form-control" name="password" id="password"-->
-                   <!--placeholder=" 密码:由字母开头、数字、下划线组成,长度小于20"-->
-                   <!--required data-required-msg="请输入密码"-->
-                   <!--pattern="[a-zA-Z][a-zA-Z0-9_]{1,20}" validationMessage="请输入合法密码"-->
-                   <!--ng-model="controller.credentials.password">-->
-            <!--<span class="k-required-msg" data-for="password"></span>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--&lt;!&ndash;<a ui-sref="main" class="btn btn-success btn-lg" type="submit" style="width: 100%">登录</a>&ndash;&gt;-->
-            <!--<button ui-sref="main" class="btn btn-success btn-lg" type="submit" style="width: 100%" ng-click="">登录</button>-->
-        <!--</div>-->
-      <!--</form>-->
-      <!--<div class="alert alert-danger" ng-show="controller.error">-->
-       <!--登录失败，请重新尝试登录操作-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-<!--<script src="./arrows.js"></script>-->
 <div class="page-container" id="login_main">
   <h1 style="text-align: center;color: #fefefe">绵阳CDM系统</h1>
   <form name="loginForm" id="_form" action="" ng-submit="controller.login()"  >
     <label for="username" class="sr-only">用户名</label>
-    <input type="text" name="username" id="username"
+    <input name="username" id="username"
            class="username" placeholder="账号" ng-model="controller.credentials.username">
     <label for="password" class="sr-only">密码</label>
     <input type="password" name="password" id="password"

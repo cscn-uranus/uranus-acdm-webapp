@@ -1,10 +1,7 @@
-/**
- * Created by Zeus on 2017/8/8.
- */
-// require('../app-routing.module');
-var loginController = function($rootScope, $http, $location, $window) {
+var loginController = function(
+  $rootScope, $http, $location, $window, ConstantConfig) {
   var self = this;
-  var REST_LOGIN_URI = 'http://localhost:8099/login';
+  var REST_LOGIN_URI = ConstantConfig.SERVICE_URL;
   var authenticate = function(credentials, callback) {
     var headers = credentials ? {
       authorization: 'Basic '
