@@ -1,7 +1,7 @@
 var loginController = function(
   $rootScope, $http, $location, $window, ConstantConfig) {
   var self = this;
-  var REST_LOGIN_URI = ConstantConfig.SERVICE_URL;
+  var REST_LOGIN_URI = ConstantConfig.SERVICE_URL+'/user';
   var authenticate = function(credentials, callback) {
     var headers = credentials ? {
       authorization: 'Basic '
