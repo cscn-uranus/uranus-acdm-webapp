@@ -1,5 +1,5 @@
 var ConstantConfig = {
-  SERVICE_URL: 'http://localhost:8081',
+  AUTHENTICATE_SERVICE_URL: 'http://localhost:8080/authenticate',
 };
 
 module.exports = ConstantConfig;
