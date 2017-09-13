@@ -6,7 +6,15 @@ var LoginController = function(
     $http({
       url: ConstantConfig.AUTHENTICATE_SERVICE_URL,
       method: 'POST',
-      params: {
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      transformRequest: function(obj) {
+        var str = [];
+        for (var p in obj) {
+          str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+        }
+        return str.join('&');
+      },
+      data: {
         username: $scope.username,
         password: $scope.password,
       },
@@ -36,9 +44,6 @@ var LoginController = function(
         $scope.message = 'Authetication Failed !';
       }
     )
-    // .catch(function(res) {
-    //   $scope.message = 'Authetication Failed !';
-    // })
     ;
   };
 };
