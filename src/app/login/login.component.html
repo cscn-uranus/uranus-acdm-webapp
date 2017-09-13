@@ -1,6 +1,6 @@
 <div class="page-container" id="login_main">
   <h1 style="text-align: center;color: #fefefe">绵阳CDM系统</h1>
-  <form name="loginForm" id="_form" action="" ng-submit="login()"  >
+  <form name="loginForm" id="_form" action=""  >
     <label for="username" class="sr-only">用户名</label>
     <input name="username" id="username"
            class="username" placeholder="账号" ng-model="username">
@@ -14,7 +14,7 @@
         <!--&nbsp;&nbsp;<span style="color: #fefefe">记住我</span></label>-->
     <!--</div>-->
     <!--<button type="submit" class="btn-block" ui-sref="main" ng-click="login()" id="login">登录</button>-->
-    <button type="submit" class="btn-block"  id="login">登录</button>
+    <button type="button" class="btn-block" ng-click="login()" id="login">登录</button>
     <div class="alert alert-info " style="margin-top: 10px" ng-show="message">{{message}}</div>
   </form>
 </div>
