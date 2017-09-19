@@ -1,8 +1,14 @@
 var LoginController = function(
   $http, $scope, $state, AuthService, $rootScope, ConstantConfig) {
+  // requesting the token by usename and passoword
+  // 添加回车按键与登陆按钮绑定事件
+  $scope.myKeyup = function(e) {
+    var keycode = window.event ? e.keyCode : e.which;
+    if (keycode === 13) {
+      $scope.login();
+    }
+  };
   $scope.login = function() {
-    // requesting the token by usename and passoword
-    // console.log('login');
     $http({
       url: ConstantConfig.AUTHENTICATE_SERVICE_URL,
       method: 'POST',
@@ -21,15 +27,15 @@ var LoginController = function(
     }).then(
       function(res) {
         $scope.password = null;
-        console.log(res.data.token);
         // checking if the token is available in the response
         if (res.data.token) {
           $scope.message = '';
           // setting the Authorization Bearer token with JWT token
           $http.defaults.headers.common['Authorization'] = 'Bearer ' +
-            res.token;
+            res.data.token;
           // setting the user in AuthService
           AuthService.user = res.data.user;
+          AuthService.token= res.data.token;
           $rootScope.$broadcast('LoginSuccessful');
           // going to the auth page
           $state.go('auth');
@@ -41,10 +47,9 @@ var LoginController = function(
           console.log('login failed!');
         }
       }, function(errResponse) {
-        $scope.message = 'Authetication Failed !';
+        $scope.message = '登陆失败！';
       }
-    )
-    ;
+    );
   };
 };
 
@@ -52,6 +57,5 @@ var loginComponent = {
   template: require('./login.component.html'),
   controller: LoginController,
 };
-
 module.exports = loginComponent;
 

@@ -1,5 +1,6 @@
 require('@uirouter/angularjs');
 require('@uirouter/angularjs/release/stateEvents');
+var homeGridComponent = require('./home/home-grid.component');
 var appRoutingModule = angular.module('appRoutingModule',
   ['ui.router', 'ui.router.state.events']);
 
@@ -44,8 +45,6 @@ appRoutingModule.run(
 appRoutingModule.run(function(AuthService, $rootScope, $state) {
   $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams) {
-      console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-      console.log('authuser is:'+AuthService.user);
       if (!AuthService.user) {
         // To avoiding the infinite looping of state change we have to add a
         // if condition.

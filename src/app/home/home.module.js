@@ -2,7 +2,11 @@ require('@progress/kendo-ui/js/kendo.core');
 require('@progress/kendo-ui/js/kendo.angular');
 require('@progress/kendo-ui/js/kendo.datepicker');
 require('@progress/kendo-ui/js/kendo.menu');
+require('@progress/kendo-ui/js/kendo.grid');
+require('@progress/kendo-ui/js/kendo.data');
+require('@progress/kendo-ui/js/kendo.dataviz');
 require('./home.component.scss');
+
 var homeComponent = require('./home.component');
 var homeFooterComponent = require('./home-footer.component');
 var homeGridComponent = require('./home-grid.component');
