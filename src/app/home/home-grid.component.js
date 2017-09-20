@@ -1,69 +1,33 @@
 var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
-  // $scope.name = 'grid';
   var token = AuthService.token;
-  var auth = 'Bearer ' + token;
-  var flights = null;
-  console.log('token is:');
-  console.log(token);
-  console.log(auth);
-  var init = function() {
-    console.log('++++++++++');
-    $http({
-      method: 'GET',
-      url: 'http://localhost:8081/apiFlight/flights',
-      headers: {'Authorization': auth},
-    });
-  };
-  init();
-  var dataSource = new kendo.data.DataSource({
-    transport: {
-      read:
-      //   function(options) {
-      //   var config = {
-      //     method: 'GET',
-      //     url: 'http://localhost:8081/apiFlight/flights',
-      //     headers: {'Authorization': auth},
-      //   };
-      //   $http(config).then(function(res) {
-      //     console.log(res);
-      //   });
-      // },
-        {
-        url: ConstantConfig.FLIGHT_INFO_SERVICE_URL + 'flights',
-        type: 'GET',
-        // header: {Authorization: auth},
-        beforeSend: function(request) {
-          console.log('ccccccccchhhhhhhhh');
-          request.setRequestHeader('Authorization', 'auth');
-        },
-        dataType: 'json',
-      },
-    },
-  });
+  // var auth = 'Bearer ' + token;
+  // console.log('token is:');
+  // console.log(token);
+  // console.log(auth);
   $scope.mainGridOptions = {
-    dataSource: flights,
-    //   {
-    //   transport: {
-    //     // read: ConstantConfig.FLIGHT_INFO_SERVICE_URL + '/flights',
-    //     read: {
-    //       url: ConstantConfig.FLIGHT_INFO_SERVICE_URL + '/flights',
-    //       dataType: 'json',
-    //       type: 'GET',
-    //       beforeSend: function(request) {
-    //         var auth = 'Bearer ' + token;
-    //         request.setRequestHeader('Authorization', auth);
-    //       },
-    //     },
-    //   },
-    //   // pageSize: 5,
-    //   // serverPaging: true,
-    //   // serverSorting: true,
-    // },
-    // sortable: true,
-    // pageable: true,
-    // dataBound: function() {
-    //   this.expandRow(this.tbody.find('tr.k-master-row').first());
-    // },
+    dataSource: {
+      transport: {
+        read: function(e) {
+          $http({
+            method: 'GET',
+            url: ConstantConfig.FLIGHT_INFO_SERVICE_URL + 'flights',
+            // headers: {Authorization: auth},
+          }).then(function success(response) {
+            console.log(response.data);
+            e.success(response.data);
+          }, function error(response) {
+            alert('cannot get the flightInformation');
+            console.log(response);
+          });
+        },
+      },
+      pageSize: 20,
+    },
+    resizable: true,
+    selectable: 'multiple cell',
+    allowCopy: true,
+    sortable: true,
+    editable: 'inline',
     columns: [
       {
         field: 'id',
@@ -74,6 +38,10 @@ var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
         field: 'flightId',
         title: 'FlightId',
         width: '120px',
+        attributes: {
+          'class': 'table-cell',
+          style: 'text-align: center; font-size: 14px',
+        },
       }, {
         field: 'actualArrivalAirport',
         title: 'ActualArrivalAirport',
@@ -89,35 +57,126 @@ var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
       }, {
         field: 'actualTakeOffTime',
         title: 'ActualTakeOffTime',
-      }],
-  };
-
-  $scope.detailGridOptions = function(dataItem) {
-    return {
-      dataSource: {
-        transport: {
-          read: 'https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders',
-        },
-        serverPaging: true,
-        serverSorting: true,
-        serverFiltering: true,
-        pageSize: 5,
-        filter: {
-          field: 'EmployeeID',
-          operator: 'eq',
-          value: dataItem.EmployeeID,
-        },
+        width: '120px',
+      }, {
+        field: 'aircraftGateClosedTime',
+        title: 'AircraftGateClosedTime',
+        width: '120px',
+      }, {
+        field: 'aircraftStandbyApprovedTime',
+        title: 'AircraftStandbyApprovedTime',
+        width: '120px',
+      }, {
+        field: 'aircraftStandbyReadyTime',
+        title: 'AircraftStandbyReadyTime',
+        width: '120px',
+      }, {
+        field: 'aircraftStartBoardingTime',
+        title: 'AircraftStartBoardingTime',
+        width: '120px',
+      }, {
+        field: 'calculatedOffBlockTime',
+        title: 'CalculatedOffBlockTime',
+        width: '120px',
+      }, {
+        field: 'calculatedTakeOffTime',
+        title: 'CalculatedTakeOffTime',
+        width: '120px',
+      }, {
+        field: 'cobtType',
+        title: 'CobtType',
+        width: '120px',
+      }, {
+        field: 'creationTime',
+        title: 'CreationTime',
+        width: '120px',
+      }, {
+        field: 'departureAirportParking',
+        title: 'DepartureAirportParking',
+        width: '120px',
+      }, {
+        field: 'departureAirportRunway',
+        title: 'DepartureAirportRunway',
+        width: '120px',
+      }, {
+        field: 'departureAirportsid',
+        title: 'DepartureAirportsid',
+        width: '120px',
+      }, {
+        field: 'departureAirportTaxiTime',
+        title: 'DepartureAirportTaxiTime',
+        width: '120px',
+      }, {
+        field: 'estimatedLandingTime',
+        title: 'EstimatedLandingTime',
+        width: '120px',
+      }, {
+        field: 'estimatedOffBlockTime',
+        title: 'EstimatedOffBlockTime',
+        width: '120px',
+      }, {
+        field: 'flightNumber',
+        title: 'FlightNumber',
+        width: '120px',
+      }, {
+        field: 'predictedAircraftType',
+        title: 'PredictedAircraftType',
+        width: '120px',
+      }, {
+        field: 'predictedArrivalAirport',
+        title: 'PredictedArrivalAirport',
+        width: '120px',
+      }, {
+        field: 'predictedDepartureAirport',
+        title: 'PredictedDepartureAirport',
+        width: '120px',
+      }, {
+        field: 'predictedRegisteredId',
+        title: 'PredictedRegisteredId',
+        width: '120px',
       },
-      scrollable: false,
-      sortable: true,
-      pageable: true,
-      columns: [
-        {field: 'OrderID', title: 'ID', width: '56px'},
-        {field: 'ShipCountry', title: 'Ship Country', width: '110px'},
-        {field: 'ShipAddress', title: 'Ship Address'},
-        {field: 'ShipName', title: 'Ship Name', width: '190px'},
-      ],
-    };
+      // {
+      //   field: 'predictedRoute',
+      //   title: 'PredictedRoute',
+      //   width: '900px',
+      // },
+      {
+        field: 'scheduledAircraftType',
+        title: 'ScheduledAircraftType',
+        width: '120px',
+      }, {
+        field: 'scheduledArrivalAirports',
+        title: 'ScheduledArrivalAirports',
+        width: '120px',
+      }, {
+        field: 'scheduledDepartureAirport',
+        title: 'ScheduledDepartureAirport',
+        width: '120px',
+      }, {
+        field: 'scheduledInBlockTime',
+        title: 'ScheduledInBlockTime',
+        width: '120px',
+      }, {
+        field: 'scheduledOffBlockTime',
+        title: 'ScheduledOffBlockTime',
+        width: '120px',
+      }, {
+        field: 'targetOffBlockTime',
+        title: 'TargetOffBlockTime',
+        width: '120px',
+      }, {
+        field: 'actualTakeOffTime',
+        title: 'ActualTakeOffTime',
+        width: '120px',
+      }, {
+        field: 'updateTime',
+        title: 'UpdateTime',
+        width: '120px',
+      }, {
+        field: 'scheduledArrivalAirport',
+        title: 'ScheduledArrivalAirport',
+        width: '120px',
+      }],
   };
 };
 var homeGridComponent = {

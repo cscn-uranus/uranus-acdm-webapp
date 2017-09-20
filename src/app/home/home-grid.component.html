@@ -1,72 +1,7 @@
-<!--<div >-->
-<!--<div>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>{{name}}</p>-->
-<!--</div>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--<p>登录成功才有权限查看！</p>-->
-<!--</div>-->
 <div id="homeGrid" >
   <kendo-grid options="mainGridOptions">
-    <div k-detail-template="">
-      <kendo-tabstrip>
-        <ul>
-          <li class="k-state-active">Orders</li>
-          <li>Contact information</li>
-        </ul>
-        <div>
-          <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
-        </div>
-        <div>
-          <ul class="contact-info-form">
-            <li><label>FlightId:</label> <input class="k-textbox" ng-model="dataItem.Country"/></li>
-            <li><label>actualArrivalAirport:</label> <input class="k-textbox" ng-model="dataItem.City"/></li>
-            <li><label>actualDepartureAirport:</label> {{dataItem.Address}}</li>
-          </ul>
-        </div>
-      </kendo-tabstrip>
-    </div>
   </kendo-grid>
 </div>
-<style>
-  .contact-info-form {
-    list-style-type: none;
-    margin: 30px 0;
-    padding: 0;
-  }
 
-  .contact-info-form li {
-    margin: 10px 0;
-  }
-
-  .contact-info-form label {
-    display: inline-block;
-    width: 100px;
-    text-align: right;
-    font-weight: bold;
-  }
-</style>
 
 
