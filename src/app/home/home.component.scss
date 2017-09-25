@@ -1,13 +1,15 @@
 #home{
-  min-height: 100%;
-  height: auto ;
-  //height: 100%;
+  height: 100%;
   width: 100%;
-  position: absolute;
+  position: relative;
+  padding-bottom: 5px;
 }
 #header{
-  height: 110px;
-  position: relative;
+  height: 100px;
+  position: fixed;
+  margin: 0 auto;
+  padding: 0;
+  z-index: 99;
 }
 #title{
   height: 50px;
@@ -27,12 +29,13 @@
 }
 
 #main{
-  //width: 1726px;
+  padding-top: 100px;
   width: 100%;
   margin: 0;
   clear: both;
-  overflow: auto;
   position: relative;
+  height: 100%;
+
 }
 #mainContent{
   background: none;

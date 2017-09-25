@@ -1,46 +1,112 @@
 var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
-  var token = AuthService.token;
-  // var auth = 'Bearer ' + token;
-  // console.log('token is:');
-  // console.log(token);
-  // console.log(auth);
   $scope.mainGridOptions = {
     dataSource: {
+      // type: 'json',
       transport: {
         read: function(e) {
           $http({
             method: 'GET',
-            url: ConstantConfig.FLIGHT_INFO_SERVICE_URL + 'flights',
+            url: ConstantConfig.FLIGHT_INFO_SERVICE_URL,
             // headers: {Authorization: auth},
           }).then(function success(response) {
-            console.log(response.data);
             e.success(response.data);
           }, function error(response) {
             alert('cannot get the flightInformation');
             console.log(response);
           });
         },
+        update: function(e) {
+          $http({
+            method: 'PUT',
+            url: ConstantConfig.FLIGHT_INFO_SERVICE_URL,
+            data: e.data,
+            // headers: {Authorization: auth},
+          }).then(function success(response) {
+            e.success(response.data);
+          }, function error(response) {
+            alert('cannot edit the flightInformation');
+            console.log(response);
+          });
+        },
+        destroy: function(e) {
+          $http({
+            method: 'DELETE',
+            url: ConstantConfig.FLIGHT_INFO_SERVICE_URL + '/' + e.data.id,
+            // headers: {Authorization: auth},
+          }).then(function success(response) {
+            // console.log(response.data);
+            e.success(response.data);
+          }, function error(response) {
+            alert('cannot delete the flightInformation');
+            console.log(response);
+          });
+        },
+        create: function(e) {
+          $http({
+            method: 'POST',
+            url: ConstantConfig.FLIGHT_INFO_SERVICE_URL,
+            data: e.data,
+          }).then(function success(response) {
+            console.log(response.data);
+            e.success(response.data);
+          }, function error(response) {
+            alert('cannot create the flightInformation');
+            console.log(e.data);
+          });
+        },
+        parameterMap: function(options, operation) {
+          if (operation !== 'read' && options.models) {
+            return {models: kendo.stringify(options.models)};
+          }
+        },
       },
-      pageSize: 20,
+      batch: false,
+      pageSize: 25,
+      schema: {
+        model: {
+          id: 'id',
+          fields: {
+            id: {editable: false, nullable: false},
+            flightId: {type: 'number'},
+            actualArrivalAirport: {type: 'string'},
+            actualDepartureAirport: {type: 'string'},
+          },
+        },
+      },
     },
+    selectable: true,
+    toolbar: [
+      {
+        name: 'create',
+        text: '添加',
+      },
+      {
+        name: 'save',
+        text: '保存',
+      },
+      {
+        name: 'cancel',
+        text: '取消',
+      }],
+    height: 845,
     resizable: true,
-    selectable: 'multiple cell',
     allowCopy: true,
     sortable: true,
-    editable: 'inline',
+    editable: true,
+    filterable: true,
     columns: [
-      {
-        field: 'id',
-        title: 'id',
-        width: '50px',
-      },
+      // {
+      //   field: 'id',
+      //   title: 'id',
+      //   width: '50px',
+      // },
       {
         field: 'flightId',
         title: 'FlightId',
         width: '120px',
         attributes: {
           'class': 'table-cell',
-          style: 'text-align: center; font-size: 14px',
+          // style: 'text-align: center; font-size: 14px',
         },
       }, {
         field: 'actualArrivalAirport',
@@ -135,11 +201,11 @@ var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
         title: 'PredictedRegisteredId',
         width: '120px',
       },
-      // {
-      //   field: 'predictedRoute',
-      //   title: 'PredictedRoute',
-      //   width: '900px',
-      // },
+      {
+        field: 'predictedRoute',
+        title: 'PredictedRoute',
+        width: '1100px',
+      },
       {
         field: 'scheduledAircraftType',
         title: 'ScheduledAircraftType',
@@ -176,7 +242,7 @@ var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
         field: 'scheduledArrivalAirport',
         title: 'ScheduledArrivalAirport',
         width: '120px',
-      }],
+      }, {command: 'destroy', title: 'DELETE ', width: '150px'}],
   };
 };
 var homeGridComponent = {
