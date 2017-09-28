@@ -1,4 +1,4 @@
-var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
+var homeGridController = function($http, $scope, ConstantConfig) {
   function dateTimeEditor(container, options) {
     $('<input data-text-field="' + options.field + '" data-value-field="' +
       options.field + '" data-bind="value:' + options.field +
@@ -116,7 +116,7 @@ var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
           }
         },
       },
-      batch: false,
+      // batch: true,
       pageSize: 25,
       // pageable: {
       //   pageSize: 25,
@@ -140,6 +140,9 @@ var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
               type: 'date',
               // format: '{0: yyyy-MM-dd HH:mm}',
             },
+            actualOffBlockTime: {
+              type: 'date',
+            },
             actualTakeOffTime: {
               type: 'date',
             },
@@ -150,6 +153,10 @@ var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
               type: 'date',
             },
             aircraftStartBoardingTime: {
+              type: 'date',
+              // format: '{0: yyyy-MM-dd HH:mm}',
+            },
+            aircraftStandbyApprovedTime: {
               type: 'date',
               // format: '{0: yyyy-MM-dd HH:mm}',
             },
@@ -271,8 +278,8 @@ var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
         sortDescending: '降序',
       },
     },
-    navigatable: true,
-    mobile: true,
+    // navigatable: true,
+    // mobile: true,
     noRecords: true,
     selectable: true,
     height: 845,
@@ -325,7 +332,7 @@ var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
         and: '且',
         or: '或',
         filter: '确定',
-        clear: '取消',
+        clear: '清除',
       },
     },
     scrollable: true,
@@ -376,42 +383,72 @@ var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
         title: 'ActualTakeOffTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
+        editor: dateTimeEditor,
+      }, {
+        field: 'actualOffBlockTime',
+        title: 'ActualOffBlockTime',
+        width: '160px',
+        format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'aircraftGateClosedTime',
         title: 'AircraftGateClosedTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'aircraftStandbyApprovedTime',
         title: 'AircraftStandbyApprovedTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'aircraftStandbyReadyTime',
         title: 'AircraftStandbyReadyTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'aircraftStartBoardingTime',
         title: 'AircraftStartBoardingTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'calculatedOffBlockTime',
         title: 'CalculatedOffBlockTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'calculatedTakeOffTime',
         title: 'CalculatedTakeOffTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'cobtType',
@@ -438,12 +475,18 @@ var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
         title: 'EstimatedLandingTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'estimatedOffBlockTime',
         title: 'EstimatedOffBlockTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'flightNumber',
@@ -492,30 +535,45 @@ var homeGridController = function($http, $scope, ConstantConfig, AuthService) {
         title: 'ScheduledInBlockTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'scheduledOffBlockTime',
         title: 'ScheduledOffBlockTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'targetOffBlockTime',
         title: 'TargetOffBlockTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'creationTime',
         title: 'CreationTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {
         field: 'updateTime',
         title: 'UpdateTime',
         width: '160px',
         format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
         editor: dateTimeEditor,
       }, {command: 'destroy', title: 'DELETE ', width: '120px'}],
   };

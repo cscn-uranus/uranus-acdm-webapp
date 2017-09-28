@@ -1,4 +1,29 @@
-var homeRightController = function($http, $scope, ConstantConfig, AuthService) {
+var homeRightController = function($http, $scope, ConstantConfig) {
+  function dateTimeEditor(container, options) {
+    $('<input data-text-field="' + options.field + '" data-value-field="' +
+      options.field + '" data-bind="value:' + options.field +
+      '" data-format="' + options.format + '"/>').
+      appendTo(container).
+      kendoDateTimePicker({});
+  }
+
+  function timeEditor(container, options) {
+    $('<input data-text-field="' + options.field + '" data-value-field="' +
+      options.field + '" data-bind="value:' + options.field +
+      '" data-format="' + options.format + '"/>').
+      appendTo(container).
+      kendoTimePicker({});
+  }
+
+  // parameterMap 不生效，自己写date format的方法
+  function date2String(e) {
+    for (var i in e.data) {
+      if (typeof e.data[i] === 'object') {
+        e.data[i] = kendo.toString(e.data[i], 'yyyy-MM-dd HH:mm');
+      }
+    }
+  }
+
   $scope.rightGridOptions = {
     dataSource: {
       // type: 'json',
@@ -16,6 +41,7 @@ var homeRightController = function($http, $scope, ConstantConfig, AuthService) {
           });
         },
         update: function(e) {
+          date2String(e);
           $http({
             method: 'PUT',
             url: ConstantConfig.FLOW_CONTROL_INFO_SERVICE_URL,
@@ -42,6 +68,7 @@ var homeRightController = function($http, $scope, ConstantConfig, AuthService) {
           });
         },
         create: function(e) {
+          date2String(e);
           $http({
             method: 'POST',
             url: ConstantConfig.FLOW_CONTROL_INFO_SERVICE_URL,
@@ -70,6 +97,28 @@ var homeRightController = function($http, $scope, ConstantConfig, AuthService) {
             flowControlId: {type: 'number'},
             assignSlot: {type: 'string'},
             controlledExemptArrivalAirport: {type: 'string'},
+            controlledExemptDepartureAirport: {type: 'string'},
+            controlledExemptFrontPoint: {type: 'string'},
+            controlledExemptRearPoint: {type: 'string'},
+            controlledIncludeArrivalAirport: {type: 'string'},
+            controlledIncludeDepartureAirport: {type: 'string'},
+            controlledIncludeFrontPoint: {type: 'string'},
+            controlledIncludeRearPoint: {type: 'string'},
+            controlledPoint: {type: 'string'},
+            controlledType: {type: 'string'},
+            mitValue: {type: 'number'},
+            name: {type: 'string'},
+            publishUser: {type: 'string'},
+            reason: {type: 'string'},
+            remark: {type: 'string'},
+            source: {type: 'string'},
+            status: {type: 'string'},
+            target: {type: 'string'},
+            flowcontrolStatusEnum: {type: 'number'},
+            creationTime: {type: 'date'},
+            updateTime: {type: 'date'},
+            startTime: {type: 'date'},
+            endTime: {type: 'date'},
           },
         },
       },
@@ -88,6 +137,7 @@ var homeRightController = function($http, $scope, ConstantConfig, AuthService) {
         select: '选择',
         update: '更新',
       },
+      noRecords: '查询数据失败',
     },
     columnMenu: {
       messages: {
@@ -97,12 +147,54 @@ var homeRightController = function($http, $scope, ConstantConfig, AuthService) {
         sortDescending: '降序',
       },
     },
+    filterable: {
+      // search: true,
+      // ignoreCase: true,
+      operators: {
+        string: {
+          eq: '等于',
+          neq: '不等于',
+          // isnull: '为空',
+          // isnotnull: '不为空',
+          // isempty: 'Empty',
+          // isnotempty: 'Not empty',
+          contains: '包含',
+          doesnotcontain: '不包含',
+          startswith: '开头为',
+          endswith: '结尾为',
+        },
+        number: {
+          eq: '等于',
+          neq: '不等于',
+          // isnull: 'Null',
+          // isnotnull: 'Not null',
+          // isempty: 'Empty',
+          // isnotempty: 'Not empty',
+          contains: '包含',
+          doesnotcontain: '不包含',
+          startswith: '开头为',
+          endswith: '结尾为',
+        },
+        date: {
+          eq: '等于',
+          neq: '不等于',
+          gt: '晚于',
+          lt: '早于',
+        },
+      },
+      messages: {
+        info: '选择筛选条件: ',
+        and: '且',
+        or: '或',
+        filter: '确定',
+        clear: '清除',
+      },
+    },
     height: 845,
     resizable: true,
     allowCopy: true,
     sortable: true,
     editable: true,
-    filterable: true,
     columns: [
       // {
       //   field: 'id',
@@ -141,11 +233,7 @@ var homeRightController = function($http, $scope, ConstantConfig, AuthService) {
         field: 'controlledIncludeArrivalAirport',
         title: 'ControlledIncludeArrivalAirport',
         width: '120px',
-      }, {
-        field: 'aircraftStandbyReadyTime',
-        title: 'AircraftStandbyReadyTime',
-        width: '120px',
-      }, {
+      },  {
         field: 'controlledIncludeDepartureAirport',
         title: 'ControlledIncludeDepartureAirport',
         width: '120px',
@@ -164,14 +252,6 @@ var homeRightController = function($http, $scope, ConstantConfig, AuthService) {
       }, {
         field: 'controlledType',
         title: 'ControlledType',
-        width: '120px',
-      }, {
-        field: 'creationTime',
-        title: 'CreationTime',
-        width: '120px',
-      }, {
-        field: 'endTime',
-        title: 'EndTime',
         width: '120px',
       }, {
         field: 'mitValue',
@@ -198,10 +278,6 @@ var homeRightController = function($http, $scope, ConstantConfig, AuthService) {
         title: 'Source',
         width: '120px',
       }, {
-        field: 'startTime',
-        title: 'StartTime',
-        width: '120px',
-      }, {
         field: 'status',
         title: 'Status',
         width: '120px',
@@ -209,15 +285,46 @@ var homeRightController = function($http, $scope, ConstantConfig, AuthService) {
         field: 'target',
         title: 'Target',
         width: '120px',
-      },
-      {
-        field: 'updateTime',
-        title: 'UpdateTime',
-        width: '120px',
       }, {
         field: 'flowcontrolStatusEnum',
         title: 'FlowcontrolStatusEnum',
         width: '120px',
+      }, {
+        field: 'creationTime',
+        title: 'CreationTime',
+        width: '160px',
+        format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
+        editor: dateTimeEditor,
+      }, {
+        field: 'updateTime',
+        title: 'UpdateTime',
+        width: '160px',
+        format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
+        editor: dateTimeEditor,
+      }, {
+        field: 'startTime',
+        title: 'StartTime',
+        width: '160px',
+        format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
+        editor: dateTimeEditor,
+      }, {
+        field: 'endTime',
+        title: 'EndTime',
+        width: '160px',
+        format: '{0: yyyy-MM-dd HH:mm}',
+        filterable: {
+          ui: 'datetimepicker',
+        },
+        editor: dateTimeEditor,
       }, {command: 'destroy', title: 'DELETE ', width: '120px'}],
 
   };
