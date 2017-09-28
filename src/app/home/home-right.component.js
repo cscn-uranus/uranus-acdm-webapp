@@ -76,19 +76,27 @@ var homeRightController = function($http, $scope, ConstantConfig, AuthService) {
     },
     selectable: true,
     // toolbar: ['create', 'save', 'cancel'],
-    toolbar: [
-      {
-        name: 'create',
-        text: '添加',
+    toolbar: ['create', 'save', 'cancel'],
+    messages: {
+      commands: {
+        cancel: '取消',
+        canceledit: '取消编辑',
+        create: '添加',
+        destroy: '删除',
+        edit: '编辑',
+        save: '保存',
+        select: '选择',
+        update: '更新',
       },
-      {
-        name: 'save',
-        text: '保存',
+    },
+    columnMenu: {
+      messages: {
+        columns: '选择字段',
+        filter: '筛选',
+        sortAscending: '升序',
+        sortDescending: '降序',
       },
-      {
-        name: 'cancel',
-        text: '取消',
-      }],
+    },
     height: 845,
     resizable: true,
     allowCopy: true,
@@ -210,7 +218,7 @@ var homeRightController = function($http, $scope, ConstantConfig, AuthService) {
         field: 'flowcontrolStatusEnum',
         title: 'FlowcontrolStatusEnum',
         width: '120px',
-      }, {command: 'destroy', title: 'DELETE ', width: '150px'}],
+      }, {command: 'destroy', title: 'DELETE ', width: '120px'}],
 
   };
 };

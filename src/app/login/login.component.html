@@ -1,19 +1,19 @@
 <div class="page-container" id="login_main">
-  <h1 style="text-align: center;color: #fefefe">绵阳ACDM系统</h1>
-  <form name="loginForm" id="_form" action=""  >
+  <h1 class="login_h1">绵阳ACDM系统</h1>
+  <form name="loginForm" id="login_form" action=""  >
     <label for="username" class="sr-only">用户名</label>
     <input name="username" id="username"
-           class="username" placeholder="账号" ng-keypress="myKeyup($event)" ng-model="username">
+           class="login_input" placeholder="账号" ng-keypress="myKeyup($event)" ng-model="username">
     <label for="password" class="sr-only">密码</label>
     <input type="password" name="password" id="password"
-           class="password" placeholder="密码" ng-keypress="myKeyup($event)" ng-model="password">
+           class="login_input" placeholder="密码" ng-keypress="myKeyup($event)" ng-model="password">
     <!--<br>-->
     <!--<div style="text-align: left; margin-left: 10px;margin-top: 15px">-->
       <!--<label><input type="checkbox" checked="checked"  id="rememberMe"-->
                     <!--style="width: 10px; height: 10px;" ng-model="rememberMe">-->
         <!--&nbsp;&nbsp;<span style="color: #fefefe">记住我</span></label>-->
     <!--</div>-->
-    <button type="button" class="btn-block" ng-click="login()" ng-keypress="login()" id="login">登录</button>
+    <button type="button" class="btn-block login_button" ng-click="login()" ng-keypress="login()" id="login">登录</button>
     <div class="alert alert-info " style="margin-top: 20px" ng-show="message">{{message}}</div>
   </form>
 </div>

@@ -1,11 +1,16 @@
+require('@progress/kendo-ui/js/cultures/kendo.culture.zh-CN');
+require('@progress/kendo-ui/js/messages/kendo.messages.zh-CN');
 require('@progress/kendo-ui/js/kendo.core');
 require('@progress/kendo-ui/js/kendo.angular');
 require('@progress/kendo-ui/js/kendo.datepicker');
 require('@progress/kendo-ui/js/kendo.menu');
 require('@progress/kendo-ui/js/kendo.grid');
+require('@progress/kendo-ui/js/kendo.datetimepicker');
 require('@progress/kendo-ui/js/kendo.data');
 require('@progress/kendo-ui/js/kendo.dataviz');
 require('./home.component.scss');
+
+kendo.culture('zh-CN');
 
 var homeComponent = require('./home.component');
 var homeFooterComponent = require('./home-footer.component');
