@@ -37,22 +37,11 @@
   height: 100%;
 
 }
-#mainContent{
-  background: none;
-  float: left;
-  overflow: visible;
-  text-overflow: ellipsis;
-  width: 890px;
-  word-break: break-all;
-  text-align: center;
-}
-#sideBar{
-  width: 290px;
-  margin-left: 5px;
-  float: left;
-  text-overflow: ellipsis;
-  overflow: visible;
-  word-break: break-all;
+#k-splitter{
+  //width: 100%;
+  position: relative;
+  height: 100%;
+  display: block;
 }
 #footer{
   //position: fixed;

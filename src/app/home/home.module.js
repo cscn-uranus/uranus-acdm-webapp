@@ -6,6 +6,7 @@ require('@progress/kendo-ui/js/kendo.datepicker');
 require('@progress/kendo-ui/js/kendo.menu');
 require('@progress/kendo-ui/js/kendo.grid');
 require('@progress/kendo-ui/js/kendo.datetimepicker');
+require('@progress/kendo-ui/js/kendo.splitter');
 require('@progress/kendo-ui/js/kendo.data');
 require('@progress/kendo-ui/js/kendo.dataviz');
 require('./home.component.scss');

@@ -15,6 +15,11 @@ var homeGridController = function($http, $scope, ConstantConfig) {
       kendoTimePicker({});
   }
 
+  function toolbar_click() {
+    console.log('Toolbar command is clicked!');
+    return false;
+  };
+
   // parameterMap 不生效，自己写date format的方法
   function date2String(e) {
     for (var i in e.data) {
@@ -256,7 +261,18 @@ var homeGridController = function($http, $scope, ConstantConfig) {
         // },
       },
     },
-    toolbar: ['create', 'save', 'cancel'],
+    // groupable: {
+    //   messages: {
+    //     empty: '航班数据',
+    //   },
+    // },
+    toolbar: [
+      {
+        template: '<a class="k-button" >航班数据</a>',
+      },
+      'create',
+      'save',
+      'cancel'],
     messages: {
       commands: {
         cancel: '取消',
@@ -280,9 +296,11 @@ var homeGridController = function($http, $scope, ConstantConfig) {
     },
     // navigatable: true,
     // mobile: true,
+    // mobile: 'phone',
+
     noRecords: true,
     selectable: true,
-    height: 845,
+    height: 840,
     resizable: true,
     // allowCopy: true,
     sortable: true,
@@ -291,8 +309,11 @@ var homeGridController = function($http, $scope, ConstantConfig) {
         return '确定要删除航班号为: ' + e.flightId +
           '的数据?';
       },
+      confirmDelete: '是',
+      cancelDelete: '不',
     },
     filterable: {
+      // mode: 'menu, row',
       // search: true,
       // ignoreCase: true,
       operators: {
@@ -325,15 +346,19 @@ var homeGridController = function($http, $scope, ConstantConfig) {
           neq: '不等于',
           gt: '晚于',
           lt: '早于',
-        },
+        }
+        ,
       },
       messages: {
+        value: '选择值',
+        operator: '选择条件',
         info: '选择筛选条件: ',
         and: '且',
         or: '或',
         filter: '确定',
         clear: '清除',
-      },
+      }
+      ,
     },
     scrollable: true,
     columns: [
@@ -346,6 +371,7 @@ var homeGridController = function($http, $scope, ConstantConfig) {
         field: 'flightId',
         title: 'FlightId',
         width: '120px',
+        // minResizableWidth: '80px',
         filterable: {
           search: true,
           ignoreCase: true,
@@ -576,7 +602,8 @@ var homeGridController = function($http, $scope, ConstantConfig) {
         },
         editor: dateTimeEditor,
       }, {command: 'destroy', title: 'DELETE ', width: '120px'}],
-  };
+  }
+  ;
 };
 var homeGridComponent = {
   template: require('./home-grid.component.html'),

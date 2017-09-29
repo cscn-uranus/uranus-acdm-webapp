@@ -123,9 +123,20 @@ var homeRightController = function($http, $scope, ConstantConfig) {
         },
       },
     },
+    // groupable: {
+    //   messages: {
+    //     empty: '流控数据',
+    //   },
+    // },
     selectable: true,
     // toolbar: ['create', 'save', 'cancel'],
-    toolbar: ['create', 'save', 'cancel'],
+    toolbar: [
+      {
+        template: '<a class="k-button" >流控数据</a>',
+      },
+      'create',
+      'save',
+      'cancel'],
     messages: {
       commands: {
         cancel: '取消',
@@ -190,7 +201,7 @@ var homeRightController = function($http, $scope, ConstantConfig) {
         clear: '清除',
       },
     },
-    height: 845,
+    height: 840,
     resizable: true,
     allowCopy: true,
     sortable: true,
@@ -233,7 +244,7 @@ var homeRightController = function($http, $scope, ConstantConfig) {
         field: 'controlledIncludeArrivalAirport',
         title: 'ControlledIncludeArrivalAirport',
         width: '120px',
-      },  {
+      }, {
         field: 'controlledIncludeDepartureAirport',
         title: 'ControlledIncludeDepartureAirport',
         width: '120px',
